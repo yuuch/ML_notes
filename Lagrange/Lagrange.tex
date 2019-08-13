@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+\section{Lagrange}
+If we want to minimize the $f(x)$ subject to $g(x) \leq 0$
+We can change this restrict optimization problem into a non-restrict
+ optimization problem.
+\begin{equation}
+L(x,\lambda) = f(x) + \lambda g(x)
+\end{equation}
+Once we find the $x^*$ and $\lambda^*$ minimize the $L$ funciton,
+we have 
+\begin{equation}
+0 = \frac{\partial L}{\partial x }|_{x^*} = \nabla f(x) + \lambda \nabla g(x)
+\end{equation}
+\begin{equation}
+0 = \frac{\partial L}{\partial \lambda }|_{\lambda^*}  = g(x)
+\end{equation}
+\section{from Lagrange to the K-K-T condition}
+\subsection{$g(x) > 0$}
+if $x^*$ meet the condition $g(x^*) < 0 $, we can regard the problem as the non restrict problem 
+$$ L(x,\lambda)= f(x^*) $$ 
+,i.e. we can set $ \lambda = 0$
+in this situation ,we have 
+\begin{equation}
+\lambda g(x) = 0
+\end{equation}
+
+\subsection{$g(x) = 0$}
+ if $g(x^*) = 0$,we have 
+ \begin{equation}
+ \nabla f(x^*) + \lambda \nabla g(x^*) = 0
+ \end{equation}
+ we must have $\lambda > 0 $.\\
+ Proof:\\
+ if $\lambda < 0 $ ,we know
+ $\nabla f(x^*)$ and $\nabla g(x^*)$ are the same direct vectors.
+ We can find a point $x^* + \eta \nabla f(x^*)$ who satisfied $g(x)< 0$
+ \begin{equation}
+ f(x^* + \eta \nabla f(x^*)) = f(x^*) + \eta \nabla f(x^*) ^T \nabla f(x^*) < f(x^*)
+ \end{equation}
+where $\eta < 0$.Conlict with $f(x^*)$ is the minimum value.
+ 
+ It means vector $ \nabla f(x^*) $ is opposite to vector $ \nabla g(x^*) $
+In this situation, we still have $$\lambda g(x) = 0$$
+ \section{K-K-T}
+ \begin{equation}
+  \begin{cases}
+ \lambda \geq 0 \\
+  g(x) \leq 0 \\
+   \lambda g(x) = 0
+  \end{cases}
+ \end{equation}
+\end{document}

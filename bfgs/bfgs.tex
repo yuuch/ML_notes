@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\begin{document}
+\section{Newton Method}
+Use Taylor for $ f(x_{k+1})$  at $ x_k $:
+\begin{equation}
+f(x_{k+1}) = f(x_{k}) + \nabla f(x_{k})(x_{k+1}-x_{k}) + \frac{1}{2}(x_{k+1}-x_k)^TH(x_k)(x_{k+1}-x_k)
+\end{equation}
+where the Hessian Matrix 
+$$H(x_k)_{i,j} = \frac{\partial f(x)}{\partial x_i \partial x_j}|_{x=x_k}$$
+We want to find the minimum $f(x)$, if $x_{k+1}$ make $f(x)$ minimal 
+\begin{equation}
+\nabla f(x_{k+1}) = 0
+\end{equation}
+we derivate for the (1) equation
+\begin{equation}
+0 = \nabla f(x_{k+1}) = \nabla f(x_{k}) + H(x_k)(x_{k+1}-x_k) 
+\end{equation}
+we can write this equation as below 
+\begin{equation}
+y_k =  \nabla f(x_{k+1}) -\nabla f(x_{k})  = H(x_k)(x_{k+1}-x_k) = H(x_k) \delta_k
+\end{equation}
+Take (2) equation into (4), we obtain
+\begin{equation}
+x_{k+1} = x_k -H(x_k)^{-1} \nabla f(x_k)
+\end{equation}
+\section{BFGS}
+General, it's hard to compute the inverse of Hessian.So we propose a method to compute a 
+new matrix $G_k$ instead of the inverse of Hessian. According to the (4), we have 
+\begin{equation}
+\delta_k = x_{k+1}- x_k = G_k y_k = G_k \nabla f(x_{k+1}) -  \nabla f(x_k) 
+\end{equation}
+
+\begin{equation}
+G_{k+1} = G_k + P_k + Q_k
+\end{equation}
+where $$P_k y_k = \delta_k $$ and $$ Q_k y_k = -G_k y_k$$ and $$y_k =  \nabla f(x_{k+1}) - \nabla f(x_k) $$
+we can set 
+\begin{equation}
+P_k = \frac{\delta_k \delta_k^T}{\delta_k^T y_k}
+\end{equation}
+\begin{equation}
+Q_k = -\frac{G_k y_k y_k^T G_k }{y_k^T G_k y_k}
+\end{equation}
+which satisfied the (7).
+Consequently,
+\begin{equation}
+G_{k+1} = G_k + \frac{\delta_k \delta_k^T}{\delta_k^T y_k}  - \frac{G_k y_k y_k^T G_k }{y_k^T G_k y_k}
+\end{equation}
+\end{document}
