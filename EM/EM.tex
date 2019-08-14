@@ -1,0 +1,37 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bm}
+\title{EM algorithm}
+\author {ywch}
+\date{\today}
+\begin{document}
+\section{EM algorithm}
+Likelihood function:
+\begin{equation}
+    \label{likelihood}
+    \mathcal{L}(\Theta) = \Pi_{i=1}^m  \ p(\bm{x}_i,\Theta)
+\end{equation}
+log likelihood function:
+\begin{equation}
+    \label{log likelihood}
+    \mathcal{L} \mathcal{L}(\Theta) = \sum_{i=1 }^m \log p(\bm{x}_i,\Theta)
+\end{equation}
+    \begin{align*}
+    \mathcal{L} \mathcal{L}(\Theta) & = \sum_{i=1 }^m \log p(\bm{x}_i,\Theta)\\
+    & = \sum_{i=1 }^m \log \sum_{\bm{z}_i} p (\bm{x}_i,\bm{z}_i;\Theta) \\
+    & = \sum_{i=1 }^m \log \sum_{\bm{z}_i} Q_i(\bm{z}_i) \frac{P(\bm{x}_i,\bm{z}_i;\Theta)}{Q_i(\bm{z}_i)} \\
+    & \geq \sum_{i=1 }^m  \sum_{\bm{z}_i} Q_i(\bm{z}_i)  \log   \frac{P(\bm{x}_i,\bm{z}_i;\Theta)}{Q_i(\bm{z}_i)} \\
+    \end{align*}
+\begin{align*}
+     c = &  \frac{p(\bm{x}_i,\bm{z}_i;\Theta)}{Q_i(\bm{z}_i)}  \\
+       Q_i(\bm{z}) & = \frac {p(\bm{x}_i,\bm{z}_i;\Theta)}{\sum_{\bm{z}_i}P(\bm{x}_i,\bm{z}_i;\Theta)} \\
+        & = \frac {p(\bm{x}_i,\bm{z}_i;\Theta)} {p(\bm{x}_i;\Theta)} \\
+      & = p(\bm{z}_i| \bm{x}_i;\Theta) \\
+\end{align*}
+Repeat until convergence:\\
+E-step:
+    $$Q_i(\bm{z}_i)=P(\bm{z}_i| \bm{x}_i;\Theta)$$
+M-step:
+    $$ \arg  \max_{\Theta}  \sum_{i=1 }^m  Q_i(\bm{z}) \log  \sum_{z} \frac{p(\bm{x}_i,\bm{z}_i;\Theta)}{Q_i(\bm{z}_i)} $$
+\end{document}
